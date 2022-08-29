@@ -35,8 +35,17 @@ const Form = () => {
     number++;
     // navigate('/')
   };
+
+  const selectList = ["카테고리 선택", "소설•시•에세이", "자기계발", "인문학•역사", "경제•경영", "자연과학", "철학•예술•종교", "기타"];
+  const [selected, setSelected] = useState("");
+
+
+  const handleSelect = (event) => {
+    setSelected(event.target)
+  };
+  console.log(selected)
  
-  const [imageSrc, setImageSrc] = useState('');
+  const [imageSrc, setImageSrc] = useState("");
 
   const imageUpload = (fileBlob) => {  
          
@@ -66,15 +75,12 @@ const Form = () => {
         </div>
         <div>
           <label>카테고리</label>
-          <select name="category">
-            <option value="">카테고리 선택</option>
-            <option value="소설•시•에세이">소설•시•에세이</option>
-            <option value="자기계발">자기계발</option>
-            <option value="인문학•역사">인문학•역사</option>
-            <option value="경제•경영">경제•경영</option>
-            <option value="자연과학">자연과학</option>
-            <option value="철학•예술•종교">철학•예술•종교</option>
-            <option value="기타">기타</option>
+          <select name="category" onChange={handleSelect} value={selected}>
+            {selectList.map((item) => (
+              <option value={item} key = {item}>
+                {item}
+              </option>
+            ))}
           </select>
         </div>
         <div>
