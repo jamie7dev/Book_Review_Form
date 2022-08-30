@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "username": "윤채원",
+      "category": "다이어트",
+      "title": "닭가슴살샐러드",
+      "ingredients": "닭가슴살",
+      "body": "닭가슴살 샐러드를 만들어보자"
+    },
+    {
+      "id": 2,
+      "username": "윤채원",
+      "category": "다이어트",
+      "title": "닭가슴살샐러드",
+      "ingredients": "닭가슴살",
+      "body": "닭가슴살 샐러드를 만들어보자"
+    }
+  ]
+}
