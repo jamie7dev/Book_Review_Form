@@ -3,22 +3,28 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux/";
 import { createComment } from "../redux/modules/comment";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { __getComments } from "../redux/modules/comment";
 import axios from "axios";
-
-let number = 2;
-
+import CustomButton from "./CustomButton";
+import nextId from "react-id-generator";
+import CommentModal from "./CommentModal";
 const Comment = () => {
+  const number = nextId();
 
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
-  
+  // const navigate = useNavigate();
+
   const { isLoading, error, comments } = useSelector((state) => state.comment);
 
+  const [modal, setModal] = useState(false);
+
+  const onDeleteHandler = (id) => {
+    axios.delete(`http://localhost:3001/comments/${id}`);
+  };
 
   const filteredComment = comments.filter((comment) => comment.parentId == id);
-  console.log(comments)
 
   const initialState = {
     parentId: id,
@@ -38,11 +44,6 @@ const Comment = () => {
     dispatch(createComment({ ...comment, id: number }));
     axios.post("http://localhost:3001/comments", { ...comment, id: number });
     setComment(initialState);
-    number++;
-  };
-
-  const onClickDeleteButtonHandler = (commentId) => {
-    axios.delete(`http://localhost:3001/comments/${commentId}`);
   };
 
   useEffect(() => {
@@ -66,26 +67,41 @@ const Comment = () => {
           name="desc"
           value={comment.desc}
           onChange={onChangeHandler}
+          required
         />
-        <button>입력하기</button>
+        <CustomButton title="입력하기" />
       </form>
 
-      <div>
+      <Content>
         {filteredComment.map((comment) => {
           return (
             <div key={comment.id}>
               <p>{comment.desc}</p>
-              <button>수정</button>
-              <button
-              type="button"
-              onClick={() => onClickDeleteButtonHandler(comment.id)}
-            >
-              삭제하기
-            </button>
+              <CustomButton
+                title={"수정"}
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              />
+              <CustomButton
+                title={"삭제"}
+                onClick={() => {
+                  onDeleteHandler(comment.id);
+                }}
+              />
+
+              {modal === true ? (
+                <CommentModal
+                  comments={comments}
+                  comment={comment}
+                  modal={modal}
+                  setModal={setModal}
+                />
+              ) : null}
             </div>
           );
         })}
-      </div>
+      </Content>
     </StComment>
   );
 };
@@ -95,3 +111,5 @@ export default Comment;
 const StComment = styled.div`
   width: 40%;
 `;
+
+const Content = styled.div``;

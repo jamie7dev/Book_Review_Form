@@ -7,6 +7,7 @@ import { addPost } from "../redux/modules/form";
 import axios from "axios";
 import nextId from "react-id-generator";
 // import { CustomButton } from "./CustomButton";
+// import useInput from '../hooks/useInput';
 
 
 // let number = 3;
@@ -15,6 +16,8 @@ const Form = () => {
   let id = nextId();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
   
   
 //초기값
@@ -27,11 +30,11 @@ const Form = () => {
     body: "",
   };
 
+  
 
   const [post, setPost] = useState(initialState);
 
 
-  // event handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value});

@@ -5,8 +5,8 @@
       "username": "윤채원",
       "category": "다이어트",
       "title": "닭가슴살샐러드",
-      "ingredients": "닭가슴살",
-      "body": "닭가슴살 샐러드를 만들어보자"
+      "ingredients": "닭가슴살, \b양상추",
+      "body": "닭가슴살을 잘게 찢어서 양상추랑 같이 드세요@"
     },
     {
       "id": "id8",
@@ -15,18 +15,41 @@
       "title": "dd",
       "ingredients": "d",
       "body": "d"
+    },
+    {
+      "id": "id10",
+      "username": "ee",
+      "category": "브런치",
+      "title": "ee",
+      "ingredients": "ee",
+      "body": "ee"
     }
   ],
   "comments": [
     {
       "parentId": "1",
       "id": 3,
-      "desc": "오잉?"
+      "desc": "ㅠㅠ"
     },
     {
       "parentId": "1",
-      "id": 4,
-      "desc": "잘 들어오나?"
+      "id": 2,
+      "desc": "??"
+    },
+    {
+      "parentId": "1",
+      "id": 1,
+      "desc": "ㅋㅋㅋ"
+    },
+    {
+      "parentId": "1",
+      "id": 8,
+      "desc": "ㅎㅎ"
+    },
+    {
+      "parentId": "1",
+      "id": "id4",
+      "desc": "제발 !!!111222323"
     }
   ]
 }

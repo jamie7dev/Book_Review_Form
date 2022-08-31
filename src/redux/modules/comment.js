@@ -26,7 +26,7 @@ export const commentSlice = createSlice({
   reducers: {
     createComment: (state, action) => {
       state.comments.push(action.payload)
-  },
+    }
 },
   extraReducers: {
     [__getComments.pending]: (state) => {

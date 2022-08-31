@@ -4,14 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { __getPosts } from "../redux/modules/form";
+import axios from "axios";
+import useTitle from '../hooks/useTitle';
 
 const List = () => {
+  const titleUpdater = useTitle('로딩중🫥')
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [like, setLike] = useState([0]);
 
   //json-server
   const { isLoading, error, posts } = useSelector((state) => state.form);
+  
+  //Custom Hook(useTitle)
+  setTimeout(() => titleUpdater('Home'), 3000);
 
   useEffect(() => {
     dispatch(__getPosts());
