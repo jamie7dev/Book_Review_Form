@@ -9,12 +9,19 @@
       "body": "닭가슴살 샐러드를 만들어보자"
     },
     {
-      "id": 2,
-      "username": "윤채원",
-      "category": "다이어트",
-      "title": "닭가슴살샐러드",
-      "ingredients": "닭가슴살",
-      "body": "닭가슴살 샐러드를 만들어보자"
+      "id": "id8",
+      "username": "dd",
+      "category": "집밥",
+      "title": "dd",
+      "ingredients": "d",
+      "body": "d"
+    }
+  ],
+  "comments": [
+    {
+      "parentId": "id",
+      "id": 1,
+      "desc": "맛있겠다!!!"
     }
   ]
 }

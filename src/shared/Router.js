@@ -10,7 +10,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/form" element={<AddForm />} />
-        <Route path="/detail" element={<Detail/>}  // /detail/:id로 수정해야함 
+        <Route path="/detail/:id" element={<Detail/>}  // /detail/:id로 수정해야함 
         />
       </Routes>
     </BrowserRouter>

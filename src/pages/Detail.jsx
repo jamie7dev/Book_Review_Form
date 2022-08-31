@@ -18,5 +18,6 @@ export default Detail;
 
 const StDetail = styled.div`
   display: flex;
-  padding-top: 120px;
+  padding: 0 40px;
+  padding-top: 140px;
 `;

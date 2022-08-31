@@ -26,11 +26,11 @@ export const formSlice = createSlice({
   initialState,
   reducers: { // Reducer 안에 만든 함수 자체가 리듀서 로직이자, Action creator
     addPost: (state, action) => {
-      const addPost = [...state, action.payload];
-      return addPost;     
+      state.posts.push(action.payload)   
     },
+   },
 
-  extraReducers: {
+   extraReducers: {
     [__getPosts.pending]: (state) => {
       state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
@@ -43,11 +43,9 @@ export const formSlice = createSlice({
       state.isLoading = false;  // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
-    },
-   },
   },
-);
+});
 
 
 export const { addPost } = formSlice.actions;
-export default formSlice.reducer;
+export default formSlice;

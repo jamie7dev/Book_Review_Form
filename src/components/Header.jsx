@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
   <StHeader>
-  <h1 onClick = {() => {navigate("/")}}>BOOK REVIEW</h1>
+  <h1 onClick = {() => {navigate("/")}}>방구석 Yoriking</h1>
   </StHeader>
   );
 };
@@ -19,9 +19,15 @@ const StHeader = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  height: 100px;
+  height: 120px;
   width: 100%;
   padding: 0 50px;
+  color: white;
+  & h1 {
+    font-size: 40px;
+    cursor: pointer;
+    width: 330px;
+  }
 
   background-color: #5f9947;
 

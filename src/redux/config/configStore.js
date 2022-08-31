@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import comment from "../modules/comment";
-import  { formSlice } from "../modules/form";
+import commentSlice from "../modules/comment";
+import formSlice from "../modules/form";
 
 const store = configureStore({
   reducer: {
-		comment,
+		comment: commentSlice.reducer,
     form: formSlice.reducer,
   },
 });

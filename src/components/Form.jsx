@@ -1,13 +1,11 @@
 import React from "react";
 // import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { addPost } from "../redux/modules/form";
 import axios from "axios";
 import nextId from "react-id-generator";
-import { __getPosts } from "../redux/modules/form";
-
 
 
 // let number = 3;
@@ -16,14 +14,6 @@ const Form = () => {
   let id = nextId();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  //json-server
-  const { isLoading, error, posts } = useSelector((state) => state.form);
-
-  useEffect(() => {
-    dispatch(__getPosts());
-  }, [dispatch]);
-
   
   
 //초기값
@@ -38,18 +28,7 @@ const Form = () => {
 
 
   const [post, setPost] = useState(initialState);
-  const [text, setText] = useState([]);
-//
-  const fetchText = async () => {
-    const { data } = await axios.get("http://localhost:3001/posts");
-    setText(data); // 서버로부터 fetching한 데이터를 useState의 state로 set 합니다.
-  };
-  useEffect(() => {
-		// effect 구문에 생성한 함수를 넣어 실행합니다.
-    fetchText();
-  }, [post]);
 
-  console.log(text);
 
   // event handler
   const onChangeHandler = (event) => {
@@ -65,7 +44,7 @@ const Form = () => {
     axios.post("http://localhost:3001/posts", { ...post, id: id });
     setPost(initialState);
     // number++;
-    // navigate('/')
+    navigate('/')
   };
 
 
@@ -82,14 +61,6 @@ const Form = () => {
     { value: "기타", name: "기타" },
   ];
 
-  if (isLoading) {
-    return <div>로딩 중....</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-  console.log(posts)
 
   return (
     <>
@@ -163,18 +134,8 @@ const Form = () => {
               <button onClick={(e) => {e.preventDefault();setPost(initialState)}}>다시 작성하기</button>
             </div>
           </div>
-          
         </div>
       </form>
-      <div>
-        {text.map((a) => {
-          return(
-            <div key={a.id}>
-              {a.username}
-            </div>
-          );
-        })}
-      </div>
     </>
     
   );
