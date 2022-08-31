@@ -5,24 +5,19 @@ import { useSelector, useDispatch } from "react-redux/";
 import { createComment } from "../redux/modules/comment";
 import { useParams } from "react-router-dom";
 import { __getComments } from "../redux/modules/comment";
+import axios from "axios";
 
 let number = 2;
 
 const Comment = () => {
 
   const {id} = useParams();
-
   const dispatch = useDispatch();
+  
+  const { isLoading, error, comments } = useSelector((state) => state.comment);
 
-  //Comment.js가 mount 됐을 때 thunk함수를 dispatch하는 코드
-  useEffect(() => {
-    dispatch(__getComments());
-  }, [dispatch]);
-  //
 
- 
-
-  // const filteredComment = comments.filter((comment) => comment.parentId == id)
+  const filteredComment = comments.filter((comment) => comment.parentId == id);
   console.log(comments)
 
   const initialState = {
@@ -41,11 +36,14 @@ const Comment = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(createComment({ ...comment, id: number }));
+    axios.post("http://localhost:3001/comments", { ...comment, id: number });
     setComment(initialState);
     number++;
   };
 
-  const { isLoading, error, comments } = useSelector((state) => state.comment);
+  const onClickDeleteButtonHandler = (commentId) => {
+    axios.delete(`http://localhost:3001/comments/${commentId}`);
+  };
 
   useEffect(() => {
     dispatch(__getComments());
@@ -58,7 +56,6 @@ const Comment = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-
 
   return (
     <StComment>
@@ -74,15 +71,20 @@ const Comment = () => {
       </form>
 
       <div>
-        {/* {filteredComment.map((comment) => {
+        {filteredComment.map((comment) => {
           return (
             <div key={comment.id}>
               <p>{comment.desc}</p>
               <button>수정</button>
-              <button>삭제</button>
+              <button
+              type="button"
+              onClick={() => onClickDeleteButtonHandler(comment.id)}
+            >
+              삭제하기
+            </button>
             </div>
           );
-        })} */}
+        })}
       </div>
     </StComment>
   );

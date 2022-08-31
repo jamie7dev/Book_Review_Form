@@ -6,6 +6,7 @@ import { useState } from "react";
 import { addPost } from "../redux/modules/form";
 import axios from "axios";
 import nextId from "react-id-generator";
+// import { CustomButton } from "./CustomButton";
 
 
 // let number = 3;

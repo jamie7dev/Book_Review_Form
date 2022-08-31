@@ -12,7 +12,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http:localhost:3001/comments");
+      const data = await axios.get("http://localhost:3001/comments"); //http: 뒤에 슬래시 필요!!!(학습자료에 잘못 나와 있음)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
